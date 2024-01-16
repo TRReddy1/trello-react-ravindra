@@ -1,37 +1,31 @@
 import React from "react";
-import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const Boards = ({ data }) => {
   const navigate = useNavigate();
 
   return (
-    <Grid
-      container
-      //   spacing={{ xs: 2, md: 3 }}
-      columns={{ xs: 4, sm: 8, md: 13 }}
+    <div
       style={{
-        border: "solid",
-        margin: "3rem",
-        width: "80%",
+        display: "flex",
+        flexWrap: "wrap",
         position: "absolute",
         top: "5%",
-        left: "15%",
-        overflow: "hidden",
+        left: "20%",
+        border: "solid",
+        margin: "3rem",
+        width: "70%",
       }}
     >
       {data.map((board) => {
         return (
-          <Grid
-            item
-            xs={2}
-            sm={3}
-            md={3}
-            height={"15rem"}
+          <div
             style={{
               border: "solid",
               color: "black",
               margin: "2em",
+              width: "13rem",
+              height: "8rem",
               //   backgroundImage: `url(${
               //     board.prefs.backgroundImageScaled[Math.floor(Math.random() * 9)]
               //       .url
@@ -42,10 +36,10 @@ const Boards = ({ data }) => {
             id={board.id}
           >
             {board.name}
-          </Grid>
+          </div>
         );
       })}
-    </Grid>
+    </div>
   );
 };
 

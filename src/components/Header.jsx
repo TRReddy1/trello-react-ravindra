@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@mui/material";
 import { createBoard } from "../api";
 
-const Header = ({ getBoardName, boardName }) => {
+const Header = ({ getBoardName, boardName, setBoards }) => {
   const [displayCreate, setDisplayCreate] = useState(false);
 
   const createCard = () => {
@@ -10,7 +10,9 @@ const Header = ({ getBoardName, boardName }) => {
   };
 
   const textHandler = () => {
-    createBoard(boardName);
+    createBoard(boardName).then((res) => {
+      setBoards((old) => [...old, res]);
+    });
     getBoardName("");
   };
 

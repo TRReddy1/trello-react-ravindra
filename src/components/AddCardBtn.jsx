@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import { Button } from "@mui/material";
 import { Card, CardActions, CardContent } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { createList } from "../api";
+import { createCard } from "../api";
 
-const AdderBtn = ({ boardId, setListsFn }) => {
+const AddCardBtn = ({ id }) => {
   const [inputedVal, setInputedVal] = useState("");
   const [showAddList, setShowAddList] = useState(true);
+  // const [cardId, setCardId] = useState([]);
 
   const HandleCreate = () => {
-    createList(boardId, inputedVal).then((res) =>
-      setListsFn((old) => [...old, res])
-    );
+    const newCard = createCard(id, inputedVal).then((res) => res);
+    // setCardId(() => [...cardId, newId]);
+    // console.log(cardId);
     setInputedVal("");
   };
 
@@ -23,29 +24,26 @@ const AdderBtn = ({ boardId, setListsFn }) => {
           style={{ height: "3rem", margin: "1rem" }}
           onClick={() => setShowAddList((old) => !old)}
         >
-          + Add another list
+          + Add a card
         </Button>
       ) : (
-        <Card
-          variant="outlined"
-          style={{ border: "solid", width: "15rem", margin: "1rem" }}
-        >
+        <Card variant="outlined" style={{ border: "solid" }}>
           <CardContent>
             <input
               type="text"
               value={inputedVal}
-              placeholder=" Enter list name"
+              placeholder=" Enter card name"
               onChange={(e) => setInputedVal(e.target.value)}
-              style={{ width: "13rem", height: "1.5rem" }}
+              style={{ height: "2rem" }}
             ></input>
             <CardActions>
               <Button
                 variant="contained"
                 size="small"
                 onClick={HandleCreate}
-                style={{ marginLeft: "0rem" }}
+                style={{ marginLeft: "-0.3rem" }}
               >
-                Add list
+                Add a card
               </Button>
               <Button onClick={() => setShowAddList((old) => !old)}>
                 <CloseIcon />
@@ -58,4 +56,4 @@ const AdderBtn = ({ boardId, setListsFn }) => {
   );
 };
 
-export default AdderBtn;
+export default AddCardBtn;

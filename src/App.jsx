@@ -12,18 +12,19 @@ function App() {
   const [newBoard, setNewBoard] = useState(""); // getting new board name from header click btn
 
   useEffect(() => {
-    const fetch = async () => {
-      const res = await getBoards();
-      setBoards(res);
-    };
-    fetch();
+    getBoards().then((res) => setBoards(res));
+
     // console.log(boards);
-  }, [boards]);
+  }, []);
 
   return (
     <>
       <NavLink>
-        <Header getBoardName={setNewBoard} boardName={newBoard} />
+        <Header
+          getBoardName={setNewBoard}
+          boardName={newBoard}
+          setBoards={setBoards}
+        />
         <SideBar />
       </NavLink>
       <Routes>
