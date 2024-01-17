@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { Button } from "@mui/material";
 import { deleteCheckItem } from "../api";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const CheckItem = ({ item, listId, setItemsListFn }) => {
   const [itemChecked, setItemChecked] = useState(false);
@@ -40,6 +41,7 @@ const CheckItem = ({ item, listId, setItemsListFn }) => {
       <Button
         variant="contained"
         size="small"
+        style={{ height: "2rem" }}
         id={item.id}
         onClick={(e) => handleDelete(e)}
       >

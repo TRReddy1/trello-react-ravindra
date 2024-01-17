@@ -34,7 +34,16 @@ const ModalCheck = ({ id, cardName }) => {
   const handleClose = () => setOpen(false);
   return (
     <>
-      <Button onClick={handleOpen} style={{ color: "white" }}>
+      <Button
+        onClick={handleOpen}
+        style={{
+          color: "white",
+          width: "12rem",
+          paddingRight: "62%",
+          // paddingLeft: "0.3rem",
+          // border: "black solid",
+        }}
+      >
         {cardName}
       </Button>
       <Modal
@@ -62,6 +71,7 @@ const ModalCheck = ({ id, cardName }) => {
               style={{
                 display: "flex",
                 flexDirection: "column",
+                padding: "1rem",
                 // backgroundColor: "red",
                 // width: "90%",
               }}

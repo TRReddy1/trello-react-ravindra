@@ -26,6 +26,7 @@ const Lists = () => {
           left: "20%",
           // border: "solid",
           margin: "3rem",
+          overflowX: "auto",
         }}
       >
         {lists.map((list) => {

@@ -12,13 +12,15 @@ const SideBar = () => {
         height: "100vh",
         backgroundColor: "grey",
         textAlign: "end",
+        position: "fixed",
+        zIndex: "6",
       }}
     >
       {/* <Typography variant="h5" marginRight={"2rem"} paddingTop={"2rem"}> */}
       <Button
         style={{
           marginRight: "2rem",
-          marginTop: "2rem",
+          marginTop: "5rem",
           fontSize: "1.8rem",
           color: "white",
         }}

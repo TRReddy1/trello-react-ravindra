@@ -26,7 +26,9 @@ const Boards = ({ data }) => {
               margin: "2em",
               width: "13rem",
               height: "8rem",
+              cursor: "pointer",
               borderRadius: "5px",
+              padding: "1rem",
               backgroundColor: `${board.prefs.backgroundColor}`,
             }}
             onClick={() => navigate(`/boards/${board.id}`)}

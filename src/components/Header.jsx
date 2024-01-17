@@ -25,6 +25,10 @@ const Header = ({ getBoardName, boardName, setBoards }) => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          position: "fixed",
+          left: "0",
+          right: "0",
+          zIndex: "10",
         }}
       >
         <img

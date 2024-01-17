@@ -11,10 +11,10 @@ const ListCards = ({ id }) => {
     getCards(id).then((res) => setCards(res));
   }, []);
 
-  const checkList = (e) => {
-    console.log("card clicked");
-    getCheckLists(e.target.id);
-  };
+  // const checkList = (e) => {
+  //   // console.log("card clicked");
+  //   // getCheckLists(e.target.id);
+  // };
 
   return (
     <div>
@@ -35,7 +35,7 @@ const ListCards = ({ id }) => {
                   }}
                   key={card.id}
                   id={card.id}
-                  onClick={(e) => checkList(e)}
+                  // onClick={(e) => checkList(e)}
                 >
                   {/* {card.name} */}
                   <ModalCheck id={card.id} cardName={card.name} />

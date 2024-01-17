@@ -24,7 +24,7 @@ const AddCheckItemBtn = ({ listId, setItemsListFn }) => {
           style={{ height: "fit-content" }}
           onClick={() => setShowAddList((old) => !old)}
         >
-          + Add checklist
+          + Add Items
         </Button>
       ) : (
         <Card
@@ -46,7 +46,7 @@ const AddCheckItemBtn = ({ listId, setItemsListFn }) => {
                 onClick={HandleCreate}
                 style={{ marginLeft: "0rem" }}
               >
-                Add list
+                Add item
               </Button>
               <Button onClick={() => setShowAddList((old) => !old)}>
                 <CloseIcon />
