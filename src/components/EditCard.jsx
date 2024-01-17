@@ -14,7 +14,10 @@ const EditCard = ({ id, setCardsFn }) => {
   return (
     <div>
       {" "}
-      <EditIcon onClick={() => setShowDelete((old) => !old)} />
+      <EditIcon
+        style={{ cursor: "pointer" }}
+        onClick={() => setShowDelete((old) => !old)}
+      />
       {showDelete && (
         <div
           style={{
@@ -24,7 +27,10 @@ const EditCard = ({ id, setCardsFn }) => {
             zIndex: "5",
             padding: "1rem",
             backgroundColor: "grey",
-            border: "solid",
+            color: "white",
+            borderRadius: "5px",
+            cursor: "pointer",
+            // border: "solid",
           }}
           id={id}
           onClick={(e) => deleting(e)}

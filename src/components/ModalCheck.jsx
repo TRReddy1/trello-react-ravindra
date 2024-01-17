@@ -16,7 +16,7 @@ const style = {
   width: 700,
   //   height: 600,
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  border: "2px  #000",
   boxShadow: 24,
   px: 1,
 };
@@ -66,6 +66,7 @@ const ModalCheck = ({ id, cardName }) => {
                 // width: "90%",
               }}
             >
+              {cardName}
               <CheckLists
                 checkLists={checks}
                 cardId={id}

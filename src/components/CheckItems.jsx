@@ -10,11 +10,11 @@ const CheckItems = ({ checked, cardId, setChecksFn }) => {
   };
 
   return (
-    <div style={{ border: "solid", margin: "1rem" }}>
+    <div style={{ margin: "1rem" }}>
       <div
         style={{
           display: "flex",
-          border: "solid",
+          // border: "solid",
           alignItems: "center",
           justifyContent: "space-between",
           margin: "1rem",

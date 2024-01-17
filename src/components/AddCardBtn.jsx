@@ -23,13 +23,13 @@ const AddCardBtn = ({ id, setCardsFn }) => {
       {showAddList ? (
         <Button
           variant="contained"
-          style={{ height: "3rem", margin: "1rem" }}
+          style={{ height: "3rem", margin: "1rem", width: "11rem" }}
           onClick={() => setShowAddList((old) => !old)}
         >
           + Add a card
         </Button>
       ) : (
-        <Card variant="outlined" style={{ border: "solid" }}>
+        <Card variant="outlined">
           <CardContent>
             <input
               type="text"

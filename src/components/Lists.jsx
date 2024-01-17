@@ -24,7 +24,7 @@ const Lists = () => {
           position: "absolute",
           top: "5%",
           left: "20%",
-          border: "solid",
+          // border: "solid",
           margin: "3rem",
         }}
       >
@@ -32,7 +32,7 @@ const Lists = () => {
           return (
             <Card
               variant="outlined"
-              style={{ border: "solid", margin: "1rem", width: "fit-content" }}
+              style={{ margin: "1rem", width: "15rem" }}
               key={list.id}
               id={list.id}
             >
@@ -41,6 +41,7 @@ const Lists = () => {
                   style={{
                     display: "flex",
                     alignItems: "center",
+                    justifyContent: "space-between",
                     marginLeft: "1rem",
                   }}
                 >

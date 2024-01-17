@@ -20,16 +20,13 @@ const AdderBtn = ({ boardId, setListsFn }) => {
       {showAddList ? (
         <Button
           variant="contained"
-          style={{ height: "3rem", margin: "1rem" }}
+          style={{ height: "3rem", width: "15rem", margin: "1rem" }}
           onClick={() => setShowAddList((old) => !old)}
         >
           + Add another list
         </Button>
       ) : (
-        <Card
-          variant="outlined"
-          style={{ border: "solid", width: "15rem", margin: "1rem" }}
-        >
+        <Card variant="outlined" style={{ width: "15rem", margin: "1rem" }}>
           <CardContent>
             <input
               type="text"

@@ -29,7 +29,7 @@ const AddCheckItemBtn = ({ listId, setItemsListFn }) => {
       ) : (
         <Card
           variant="outlined"
-          style={{ border: "solid", width: "fit-content", margin: "1rem" }}
+          style={{ width: "fit-content", margin: "1rem" }}
         >
           <CardContent>
             <input

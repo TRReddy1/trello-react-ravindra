@@ -28,9 +28,10 @@ const ListCards = ({ id }) => {
                     backgroundColor: "grey",
                     display: "flex",
                     height: "2rem",
-                    width: "80%",
+                    width: "12rem",
                     marginLeft: "3%",
                     marginRight: "3%",
+                    borderRadius: "5px",
                   }}
                   key={card.id}
                   id={card.id}

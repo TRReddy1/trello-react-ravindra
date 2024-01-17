@@ -33,7 +33,7 @@ const ThreeDots = ({ id, lists, setLists }) => {
         
       > */}
       <MoreHorizIcon
-        style={{ marginLeft: "5rem" }}
+        style={{ marginLeft: "5rem", cursor: "pointer" }}
         onClick={(e) => deleteHandler(e)}
       />
       {showDelete && (
@@ -44,7 +44,9 @@ const ThreeDots = ({ id, lists, setLists }) => {
             zIndex: "5",
             padding: "1rem",
             backgroundColor: "grey",
-            border: "solid",
+            color: "white",
+            borderRadius: "5px",
+            // border: "solid",
           }}
           id={id}
           onClick={(e) => deleteList(e)}
