@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { getCards } from "../api";
+import AddCardBtn from "./AddCardBtn";
 import EditCard from "./EditCard";
+import ModalCheck from "./ModalCheck";
 
 const ListCards = ({ id }) => {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    // const fetchCards = async (id) => {
-    //   const result = await getCards(id);
-    //   setCards(result);
-    // };
-
-    // fetchCards();
     getCards(id).then((res) => setCards(res));
-    // console.log(cards[0]);
   }, []);
+
+  const checkList = (e) => {
+    console.log("card clicked");
+    getCheckLists(e.target.id);
+  };
 
   return (
     <div>
@@ -22,7 +22,7 @@ const ListCards = ({ id }) => {
         cards.map((card) => {
           return (
             <>
-              <div style={{ display: "flex" }}>
+              <div style={{ display: "flex", marginBottom: "1rem" }}>
                 <div
                   style={{
                     backgroundColor: "grey",
@@ -34,14 +34,19 @@ const ListCards = ({ id }) => {
                   }}
                   key={card.id}
                   id={card.id}
+                  onClick={(e) => checkList(e)}
                 >
-                  {card.name}
+                  {/* {card.name} */}
+                  <ModalCheck id={card.id} cardName={card.name} />
                 </div>
-                <EditCard id={card.id} />
+                <EditCard id={card.id} setCardsFn={setCards} />
               </div>
             </>
           );
         })}
+      {/* <div style={{ marginTop: "1rem" }}> */}
+      <AddCardBtn id={id} setCardsFn={setCards} />
+      {/* </div> */}
     </div>
   );
 };

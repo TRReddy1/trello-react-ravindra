@@ -2,20 +2,18 @@ import React, { useState } from "react";
 import { Button } from "@mui/material";
 import { Card, CardActions, CardContent } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { createCard } from "../api";
+import { createCheckItem } from "../api";
 
-const AddCardBtn = ({ id, setCardsFn }) => {
+const AddCheckItemBtn = ({ listId, setItemsListFn }) => {
   const [inputedVal, setInputedVal] = useState("");
   const [showAddList, setShowAddList] = useState(true);
-  // const [cardId, setCardId] = useState([]);
 
   const HandleCreate = () => {
-    createCard(id, inputedVal).then((res) =>
-      setCardsFn((old) => [...old, res])
+    // console.log(inputedVal);
+    createCheckItem(listId, inputedVal).then((res) =>
+      setItemsListFn((old) => [...old, res])
     );
-    // setCardsFn((old) => [...old, newCard]);
     setInputedVal("");
-    // console.log(cardId);
   };
 
   return (
@@ -23,29 +21,32 @@ const AddCardBtn = ({ id, setCardsFn }) => {
       {showAddList ? (
         <Button
           variant="contained"
-          style={{ height: "3rem", margin: "1rem" }}
+          style={{ height: "fit-content" }}
           onClick={() => setShowAddList((old) => !old)}
         >
-          + Add a card
+          + Add checklist
         </Button>
       ) : (
-        <Card variant="outlined" style={{ border: "solid" }}>
+        <Card
+          variant="outlined"
+          style={{ border: "solid", width: "fit-content", margin: "1rem" }}
+        >
           <CardContent>
             <input
               type="text"
               value={inputedVal}
-              placeholder=" Enter card name"
+              placeholder=" Enter list"
               onChange={(e) => setInputedVal(e.target.value)}
-              style={{ height: "2rem" }}
+              style={{ width: "13rem", height: "1.5rem" }}
             ></input>
             <CardActions>
               <Button
                 variant="contained"
                 size="small"
                 onClick={HandleCreate}
-                style={{ marginLeft: "-0.3rem" }}
+                style={{ marginLeft: "0rem" }}
               >
-                Add a card
+                Add list
               </Button>
               <Button onClick={() => setShowAddList((old) => !old)}>
                 <CloseIcon />
@@ -58,4 +59,4 @@ const AddCardBtn = ({ id, setCardsFn }) => {
   );
 };
 
-export default AddCardBtn;
+export default AddCheckItemBtn;

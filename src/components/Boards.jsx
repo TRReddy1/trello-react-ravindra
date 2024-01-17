@@ -12,7 +12,7 @@ const Boards = ({ data }) => {
         position: "absolute",
         top: "5%",
         left: "20%",
-        border: "solid",
+        // border: "solid",
         margin: "3rem",
         width: "70%",
       }}
@@ -21,15 +21,12 @@ const Boards = ({ data }) => {
         return (
           <div
             style={{
-              border: "solid",
-              color: "black",
+              // border: "solid",
+              color: "white",
               margin: "2em",
               width: "13rem",
               height: "8rem",
-              //   backgroundImage: `url(${
-              //     board.prefs.backgroundImageScaled[Math.floor(Math.random() * 9)]
-              //       .url
-              //   })`,
+              backgroundColor: `${board.prefs.backgroundColor}`,
             }}
             onClick={() => navigate(`/boards/${board.id}`)}
             key={board.id}

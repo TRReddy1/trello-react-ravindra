@@ -97,4 +97,73 @@ export const deleteCard = async (id) => {
   return result;
 };
 
+export const getCheckLists = async (id) => {
+  const result = await axios
+    .get(
+      `https://api.trello.com/1/cards/${id}/checklists?key=3c85a43b49f83b6b000746806f2a255e&token=ATTAa1284e9b81df870f8a39c3950b6544e0dace63bd2a5856a7a862b5eb92619f905855800A`
+    )
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+  return result;
+};
+
+export const createCheckLists = async (id, name) => {
+  const result = await axios
+    .post(
+      `https://api.trello.com/1/cards/${id}/checklists?name=${name}&key=3c85a43b49f83b6b000746806f2a255e&token=ATTAa1284e9b81df870f8a39c3950b6544e0dace63bd2a5856a7a862b5eb92619f905855800A`,
+      { method: "POST" }
+    )
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+  return result;
+};
+
+export const deleteCheckList = async (cardId, checkListId) => {
+  const result = await axios
+    .delete(
+      `https://api.trello.com/1/cards/${cardId}/checklists/${checkListId}?key=3c85a43b49f83b6b000746806f2a255e&token=ATTAa1284e9b81df870f8a39c3950b6544e0dace63bd2a5856a7a862b5eb92619f905855800A`,
+      { method: "DELETE" }
+    )
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+  return result;
+};
+
+export const getCheckItemsOnList = async (checkListId) => {
+  const result = await axios
+    .get(
+      `https://api.trello.com/1/checklists/${checkListId}/checkItems?key=3c85a43b49f83b6b000746806f2a255e&token=ATTAa1284e9b81df870f8a39c3950b6544e0dace63bd2a5856a7a862b5eb92619f905855800A`
+    )
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+  return result;
+};
+
+export const createCheckItem = async (checkListId, itemName) => {
+  const result = await axios
+    .post(
+      `https://api.trello.com/1/checklists/${checkListId}/checkItems?name=${itemName}&key=3c85a43b49f83b6b000746806f2a255e&token=ATTAa1284e9b81df870f8a39c3950b6544e0dace63bd2a5856a7a862b5eb92619f905855800A`,
+      {
+        method: "POST",
+      }
+    )
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+  return result;
+};
+
+export const deleteCheckItem = async (listId, itemId) => {
+  const result = await axios
+    .delete(
+      `https://api.trello.com/1/checklists/${listId}/checkItems/${itemId}?key=3c85a43b49f83b6b000746806f2a255e&token=ATTAa1284e9b81df870f8a39c3950b6544e0dace63bd2a5856a7a862b5eb92619f905855800A`,
+      {
+        method: "DELETE",
+      }
+    )
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+  return result;
+};
+// getCheckLists("65a558e04d2f60a121c0d6e0");
+
 // deleteCard("65a62a7e39ee4da02401cb07");

@@ -5,7 +5,6 @@ import { Card, CardActions, CardContent } from "@mui/material";
 import ThreeDots from "./ThreeDots";
 
 import AdderBtn from "./AdderBtn";
-import AddCardBtn from "./AddCardBtn";
 import ListCards from "./ListCards";
 
 const Lists = () => {
@@ -49,13 +48,8 @@ const Lists = () => {
                   <ThreeDots id={list.id} lists={lists} setLists={setLists} />
                 </div>
               </CardContent>
-              <ListCards id={list.id} />
               <CardActions>
-                {
-                  <div style={{ marginTop: "1rem" }}>
-                    <AddCardBtn id={list.id} />
-                  </div>
-                }
+                <ListCards id={list.id} />
               </CardActions>
             </Card>
           );

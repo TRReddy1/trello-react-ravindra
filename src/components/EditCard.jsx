@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
+import { deleteCard } from "../api";
 
-const EditCard = ({ id }) => {
+const EditCard = ({ id, setCardsFn }) => {
   const [showDelete, setShowDelete] = useState(false);
 
-  const deleteCard = (e) => {
-    console.log(e.target.id);
+  const deleting = (e) => {
+    var targetId = e.target.id;
+    console.log(targetId);
+    deleteCard(targetId);
+    setCardsFn((old) => old.filter((o) => o.id !== targetId));
   };
   return (
     <div>
@@ -23,7 +27,7 @@ const EditCard = ({ id }) => {
             border: "solid",
           }}
           id={id}
-          onClick={(e) => deleteCard(e)}
+          onClick={(e) => deleting(e)}
         >
           DELETE
         </div>
