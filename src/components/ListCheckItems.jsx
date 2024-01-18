@@ -3,7 +3,7 @@ import { getCheckItemsOnList } from "../api";
 import AddCheckItemBtn from "./AddCheckItemBtn";
 import CheckItem from "./CheckItem";
 
-const ListCheckItems = ({ id }) => {
+const ListCheckItems = ({ id, cardId }) => {
   const [itemsList, setItemsList] = useState([]);
 
   useEffect(() => {
@@ -20,6 +20,7 @@ const ListCheckItems = ({ id }) => {
                 item={item}
                 listId={id}
                 setItemsListFn={setItemsList}
+                cardId={cardId}
               />
             </div>
           );

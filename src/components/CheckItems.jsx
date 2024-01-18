@@ -37,7 +37,7 @@ const CheckItems = ({ checked, cardId, setChecksFn }) => {
         </div>
       </div>
       <div style={{ margin: "1rem" }}>
-        <ListCheckItems id={checked.id} />
+        <ListCheckItems id={checked.id} cardId={cardId} />
       </div>
     </div>
   );

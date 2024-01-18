@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { Button } from "@mui/material";
-import { deleteCheckItem } from "../api";
+import { deleteCheckItem, updateStateCheck } from "../api";
 
-const CheckItem = ({ item, listId, setItemsListFn }) => {
+const CheckItem = ({ item, listId, setItemsListFn, cardId }) => {
   const [itemChecked, setItemChecked] = useState(false);
+  const [itemState, setItemState] = useState("complete");
+
+  // useEffect(() => {
+  // }, [itemChecked]);
 
   const handleChecker = (e) => {
     if (e.target.checked) {
       setItemChecked(true);
+      setItemState("complete");
+      updateStateCheck(cardId, item.id, itemState);
     } else {
       setItemChecked(false);
+      setItemState("incomplete");
+      updateStateCheck(cardId, item.id, itemState);
     }
   };
 

@@ -6,14 +6,19 @@ import ThreeDots from "./ThreeDots";
 
 import AdderBtn from "./AdderBtn";
 import ListCards from "./ListCards";
+import Skeleton from "@mui/material/Skeleton";
 
 const Lists = () => {
   const { id } = useParams();
 
   const [lists, setLists] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    boardLists(id).then((res) => setLists(res));
+    boardLists(id).then((res) => {
+      setLists(res);
+      setLoading(false);
+    });
   }, []);
 
   return (
@@ -29,33 +34,50 @@ const Lists = () => {
           overflowX: "auto",
         }}
       >
-        {lists.map((list) => {
-          return (
-            <Card
-              variant="outlined"
-              style={{ margin: "1rem", width: "15rem" }}
-              key={list.id}
-              id={list.id}
-            >
-              <CardContent>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginLeft: "1rem",
-                  }}
-                >
-                  {list.name}
-                  <ThreeDots id={list.id} lists={lists} setLists={setLists} />
-                </div>
-              </CardContent>
-              <CardActions>
-                <ListCards id={list.id} />
-              </CardActions>
-            </Card>
-          );
-        })}
+        {loading ? (
+          <div style={{ display: "flex" }}>
+            <div style={{ marginRight: "2rem" }}>
+              <Skeleton variant="rectangular" width={210} height={118} />
+              <Skeleton animation="wave" />
+            </div>
+            <div style={{ marginRight: "2rem" }}>
+              <Skeleton variant="rectangular" width={210} height={118} />
+              <Skeleton animation="wave" />
+            </div>
+            <div style={{ marginRight: "2rem" }}>
+              <Skeleton variant="rectangular" width={210} height={118} />
+              <Skeleton animation="wave" />
+            </div>
+          </div>
+        ) : (
+          lists.map((list) => {
+            return (
+              <Card
+                variant="outlined"
+                style={{ margin: "1rem", width: "15rem" }}
+                key={list.id}
+                id={list.id}
+              >
+                <CardContent>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      marginLeft: "1rem",
+                    }}
+                  >
+                    {list.name}
+                    <ThreeDots id={list.id} lists={lists} setLists={setLists} />
+                  </div>
+                </CardContent>
+                <CardActions>
+                  <ListCards id={list.id} />
+                </CardActions>
+              </Card>
+            );
+          })
+        )}
         <AdderBtn boardId={id} setListsFn={setLists} />
       </div>
     </>

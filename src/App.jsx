@@ -11,6 +11,7 @@ import { CssBaseline } from "@mui/material";
 function App() {
   const [boards, setBoards] = useState([]);
   const [newBoard, setNewBoard] = useState(""); // getting new board name from header click btn
+  // const [error,]
 
   useEffect(() => {
     getBoards().then((res) => setBoards(res));

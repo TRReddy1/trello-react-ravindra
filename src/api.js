@@ -164,6 +164,16 @@ export const deleteCheckItem = async (listId, itemId) => {
     .catch((err) => console.log(err));
   return result;
 };
+
+export const updateStateCheck = async (cardId, checkItemId, stateOfItem) => {
+  const result = await axios
+    .put(
+      `https://api.trello.com/1/cards/${cardId}/checkItem/${checkItemId}?key=3c85a43b49f83b6b000746806f2a255e&state=${stateOfItem}&token=ATTAa1284e9b81df870f8a39c3950b6544e0dace63bd2a5856a7a862b5eb92619f905855800A`,
+      { method: "PUT" }
+    )
+    .then((res) => console.log(res.status))
+    .catch((err) => console.log(err));
+};
 // getCheckLists("65a558e04d2f60a121c0d6e0");
 
 // deleteCard("65a62a7e39ee4da02401cb07");
