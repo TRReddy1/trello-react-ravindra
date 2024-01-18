@@ -7,9 +7,6 @@ const CheckItem = ({ item, listId, setItemsListFn, cardId }) => {
   const [itemChecked, setItemChecked] = useState(false);
   const [itemState, setItemState] = useState("complete");
 
-  // useEffect(() => {
-  // }, [itemChecked]);
-
   const handleChecker = (e) => {
     if (e.target.checked) {
       setItemChecked(true);

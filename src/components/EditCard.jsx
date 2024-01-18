@@ -7,7 +7,7 @@ const EditCard = ({ id, setCardsFn }) => {
 
   const deleting = (e) => {
     var targetId = e.target.id;
-    console.log(targetId);
+    // console.log(targetId);
     deleteCard(targetId);
     setCardsFn((old) => old.filter((o) => o.id !== targetId));
   };

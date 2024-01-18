@@ -10,10 +10,12 @@ const AddCheckItemBtn = ({ listId, setItemsListFn }) => {
 
   const HandleCreate = () => {
     // console.log(inputedVal);
-    createCheckItem(listId, inputedVal).then((res) =>
-      setItemsListFn((old) => [...old, res])
-    );
-    setInputedVal("");
+    if (inputedVal !== "") {
+      createCheckItem(listId, inputedVal).then((res) =>
+        setItemsListFn((old) => [...old, res])
+      );
+      setInputedVal("");
+    }
   };
 
   return (

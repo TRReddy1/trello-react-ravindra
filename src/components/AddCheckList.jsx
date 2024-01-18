@@ -12,11 +12,12 @@ const AddCheckList = ({ id, setChecksFn }) => {
     // createList(boardId, inputedVal).then((res) =>
     //   setListsFn((old) => [...old, res])
     // );
-    createCheckLists(id, inputedVal).then((res) =>
-      setChecksFn((old) => [...old, res])
-    );
-    // console.log(inputedVal);
-    setInputedVal("");
+    if (inputedVal !== "") {
+      createCheckLists(id, inputedVal).then((res) =>
+        setChecksFn((old) => [...old, res])
+      );
+      setInputedVal("");
+    }
   };
 
   return (

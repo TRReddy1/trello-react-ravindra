@@ -10,10 +10,12 @@ const Header = ({ getBoardName, boardName, setBoards }) => {
   };
 
   const textHandler = () => {
-    createBoard(boardName).then((res) => {
-      setBoards((old) => [...old, res]);
-    });
-    getBoardName("");
+    if (boardName !== "") {
+      createBoard(boardName).then((res) => {
+        setBoards((old) => [...old, res]);
+      });
+      getBoardName("");
+    }
   };
 
   return (

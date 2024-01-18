@@ -11,12 +11,14 @@ import { CssBaseline } from "@mui/material";
 function App() {
   const [boards, setBoards] = useState([]);
   const [newBoard, setNewBoard] = useState(""); // getting new board name from header click btn
-  // const [error,]
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getBoards().then((res) => setBoards(res));
+    getBoards()
+      .then((res) => setBoards(res))
+      .catch((err) => setError(err.message));
 
-    // console.log(boards);
+    // console.log(error);
   }, []);
 
   return (
@@ -32,7 +34,25 @@ function App() {
         </NavLink>
         <Routes>
           {/* <div style={{ display: "flex" }}> */}
-          <Route path="/" element={<Boards data={boards} />}></Route>
+          <Route
+            path="/"
+            element={
+              error ? (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "20%",
+                    left: "20%",
+                    fontSize: "4rem",
+                  }}
+                >
+                  {error}
+                </div>
+              ) : (
+                <Boards data={boards} />
+              )
+            }
+          ></Route>
           {/* </div> */}
           <Route path="/boards/:id" element={<Lists />}></Route>
         </Routes>

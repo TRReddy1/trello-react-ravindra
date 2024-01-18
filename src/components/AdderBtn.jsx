@@ -9,10 +9,12 @@ const AdderBtn = ({ boardId, setListsFn }) => {
   const [showAddList, setShowAddList] = useState(true);
 
   const HandleCreate = () => {
-    createList(boardId, inputedVal).then((res) =>
-      setListsFn((old) => [...old, res])
-    );
-    setInputedVal("");
+    if (inputedVal !== "") {
+      createList(boardId, inputedVal).then((res) =>
+        setListsFn((old) => [...old, res])
+      );
+      setInputedVal("");
+    }
   };
 
   return (

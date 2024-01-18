@@ -10,11 +10,13 @@ const AddCardBtn = ({ id, setCardsFn }) => {
   // const [cardId, setCardId] = useState([]);
 
   const HandleCreate = () => {
-    createCard(id, inputedVal).then((res) =>
-      setCardsFn((old) => [...old, res])
-    );
-    // setCardsFn((old) => [...old, newCard]);
-    setInputedVal("");
+    if (inputedVal !== "") {
+      createCard(id, inputedVal).then((res) =>
+        setCardsFn((old) => [...old, res])
+      );
+      // setCardsFn((old) => [...old, newCard]);
+      setInputedVal("");
+    }
     // console.log(cardId);
   };
 
