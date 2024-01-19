@@ -23,9 +23,10 @@ const CheckItem = ({ item, listId, setItemsListFn, cardId }) => {
     var targetid = e.target.id;
     // console.log(targetid);
     deleteCheckItem(listId, targetid).then((res) => {
-      setItemsListFn((old) => {
-        return old.filter((o) => o.id !== targetid);
-      });
+      // setItemsListFn((old) => {
+      //   return old.filter((o) => o.id !== targetid);
+      // });
+      setItemsListFn({ type: "del-item", payload: targetid });
     });
   };
 

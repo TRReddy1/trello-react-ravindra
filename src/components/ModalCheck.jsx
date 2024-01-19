@@ -5,8 +5,9 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import CheckLists from "./CheckLists";
 import AddCheckList from "./AddCheckList";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import { getCheckLists } from "../api";
+import { initialState, reducer } from "./reducer";
 
 const style = {
   position: "absolute",
@@ -23,11 +24,14 @@ const style = {
 };
 
 const ModalCheck = ({ id, cardName }) => {
-  const [checks, setChecks] = useState([]);
+  // const [checks, setChecks] = useState([]);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    getCheckLists(id).then((res) => setChecks(res));
-    // console.log(checks);
+    getCheckLists(id).then((res) => {
+      dispatch({ type: "fetch-start", payload: res });
+    });
+    // console.log(state.checklists);
   }, []);
 
   const [open, setOpen] = React.useState(false);
@@ -41,8 +45,6 @@ const ModalCheck = ({ id, cardName }) => {
           color: "white",
           width: "12rem",
           paddingRight: "62%",
-          // paddingLeft: "0.3rem",
-          // border: "black solid",
         }}
       >
         {cardName}
@@ -54,15 +56,6 @@ const ModalCheck = ({ id, cardName }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {/* <Typography
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
-            style={{ border: "solid", width: "fit-content" }}
-          >
-            Text in a modal
-          </Typography> */}
-
           <div
             id="modal-modal-description"
             sx={{ mt: 2 }}
@@ -73,25 +66,21 @@ const ModalCheck = ({ id, cardName }) => {
                 display: "flex",
                 flexDirection: "column",
                 padding: "1rem",
-                // backgroundColor: "red",
-                // width: "90%",
               }}
             >
               {cardName}
               <CheckLists
-                checkLists={checks}
+                checkLists={state.checklists}
                 cardId={id}
-                setChecksFn={setChecks}
+                setChecksFn={dispatch}
               />
             </div>
             <div
               style={{
                 display: "flex",
-                // backgroundColor: "grey",
-                // width: "50%",
               }}
             >
-              <AddCheckList id={id} setChecksFn={setChecks} />
+              <AddCheckList id={id} setChecksFn={dispatch} />
             </div>
           </div>
         </Box>

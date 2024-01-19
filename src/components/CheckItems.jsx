@@ -6,7 +6,9 @@ import ListCheckItems from "./ListCheckItems";
 const CheckItems = ({ checked, cardId, setChecksFn }) => {
   const deleteHandler = (e) => {
     var targetId = e.target.id;
-    deleteCheckList(cardId, targetId).then((res) => setChecksFn(res));
+    deleteCheckList(cardId, targetId).then((res) =>
+      setChecksFn({ type: "del-checklist", payload: res })
+    );
   };
 
   return (

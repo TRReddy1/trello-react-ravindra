@@ -14,7 +14,7 @@ const AddCheckList = ({ id, setChecksFn }) => {
     // );
     if (inputedVal !== "") {
       createCheckLists(id, inputedVal).then((res) =>
-        setChecksFn((old) => [...old, res])
+        setChecksFn({ type: "add-checklist", payload: res })
       );
       setInputedVal("");
     }

@@ -12,7 +12,8 @@ const AddCheckItemBtn = ({ listId, setItemsListFn }) => {
     // console.log(inputedVal);
     if (inputedVal !== "") {
       createCheckItem(listId, inputedVal).then((res) =>
-        setItemsListFn((old) => [...old, res])
+        // setItemsListFn((old) => [...old, res])
+        setItemsListFn({ type: "add-item", payload: res })
       );
       setInputedVal("");
     }
