@@ -3,15 +3,20 @@ import { Button } from "@mui/material";
 import { Card, CardActions, CardContent } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { createList } from "../api";
+import { useDispatch } from "react-redux";
+import { addingList } from "./features/listSlice";
 
-const AdderBtn = ({ boardId, setListsFn }) => {
+const AdderBtn = ({ boardId }) => {
   const [inputedVal, setInputedVal] = useState("");
   const [showAddList, setShowAddList] = useState(true);
+
+  const dispatch = useDispatch();
 
   const HandleCreate = () => {
     if (inputedVal !== "") {
       createList(boardId, inputedVal).then((res) =>
-        setListsFn((old) => [...old, res])
+        // setListsFn((old) => [...old, res])
+        dispatch(addingList(res))
       );
       setInputedVal("");
     }

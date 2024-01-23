@@ -7,18 +7,24 @@ import { Routes, Route } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Lists from "./components/Lists";
 import { CssBaseline } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { fetching } from "./components/features/boardsSlice";
 
 function App() {
-  const [boards, setBoards] = useState([]);
+  // const [boards, setBoards] = useState([]);
+  const boards = useSelector((state) => state.boards);
+  // console.log(typeof boards);
+  const dispatch = useDispatch();
   const [newBoard, setNewBoard] = useState(""); // getting new board name from header click btn
   const [error, setError] = useState(null);
 
   useEffect(() => {
     getBoards()
-      .then((res) => setBoards(res))
+      // .then((res) => setBoards(res))
+      .then((res) => dispatch(fetching(res)))
       .catch((err) => setError(err.message));
 
-    // console.log(error);
+    // console.log("upp");
   }, []);
 
   return (
@@ -28,7 +34,7 @@ function App() {
           <Header
             getBoardName={setNewBoard}
             boardName={newBoard}
-            setBoards={setBoards}
+            // setBoards={dispatch}
           />
           <SideBar />
         </NavLink>

@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import { deleteCard } from "../api";
+import { useDispatch } from "react-redux";
+import { deletingCard } from "./features/cardsSlice";
 
-const EditCard = ({ id, setCardsFn }) => {
+const EditCard = ({ cardId, listId }) => {
   const [showDelete, setShowDelete] = useState(false);
+  const dispatch = useDispatch();
 
   const deleting = (e) => {
     var targetId = e.target.id;
     // console.log(targetId);
-    deleteCard(targetId);
-    setCardsFn((old) => old.filter((o) => o.id !== targetId));
+    deleteCard(targetId).then(() => {
+      dispatch(deletingCard({ cardId: targetId, listId: listId }));
+    });
+    // setCardsFn((old) => old.filter((o) => o.id !== targetId));
   };
   return (
     <div>
@@ -32,7 +37,7 @@ const EditCard = ({ id, setCardsFn }) => {
             cursor: "pointer",
             // border: "solid",
           }}
-          id={id}
+          id={cardId}
           onClick={(e) => deleting(e)}
         >
           DELETE

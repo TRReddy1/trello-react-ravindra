@@ -1,13 +1,14 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import CheckLists from "./CheckLists";
 import AddCheckList from "./AddCheckList";
 import { useState, useEffect, useReducer } from "react";
 import { getCheckLists } from "../api";
 import { initialState, reducer } from "./reducer";
+import { useDispatch, useSelector } from "react-redux";
+import { fetching } from "./features/checklistsSlice";
 
 const style = {
   position: "absolute",
@@ -25,11 +26,15 @@ const style = {
 
 const ModalCheck = ({ id, cardName }) => {
   // const [checks, setChecks] = useState([]);
-  const [state, dispatch] = useReducer(reducer, initialState);
+  // const [state, dispatch] = useReducer(reducer, initialState);
+  const checklists = useSelector((state) => state.checklists);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getCheckLists(id).then((res) => {
-      dispatch({ type: "fetch-start", payload: res });
+      // dispatch({ type: "fetch-start", payload: res });
+      dispatch(fetching({ cardId: id, checklists: res }));
+      // console.log(checklists);
     });
     // console.log(state.checklists);
   }, []);
@@ -69,18 +74,14 @@ const ModalCheck = ({ id, cardName }) => {
               }}
             >
               {cardName}
-              <CheckLists
-                checkLists={state.checklists}
-                cardId={id}
-                setChecksFn={dispatch}
-              />
+              <CheckLists checkLists={checklists} cardId={id} />
             </div>
             <div
               style={{
                 display: "flex",
               }}
             >
-              <AddCheckList id={id} setChecksFn={dispatch} />
+              <AddCheckList id={id} />
             </div>
           </div>
         </Box>

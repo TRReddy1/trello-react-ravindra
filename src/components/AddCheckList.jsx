@@ -3,10 +3,13 @@ import { Button } from "@mui/material";
 import { Card, CardActions, CardContent } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { createCheckLists } from "../api";
+import { useDispatch } from "react-redux";
+import { addingChecklist } from "./features/checklistsSlice";
 
-const AddCheckList = ({ id, setChecksFn }) => {
+const AddCheckList = ({ id }) => {
   const [inputedVal, setInputedVal] = useState("");
   const [showAddList, setShowAddList] = useState(true);
+  const dispatch = useDispatch();
 
   const HandleCreate = () => {
     // createList(boardId, inputedVal).then((res) =>
@@ -14,7 +17,8 @@ const AddCheckList = ({ id, setChecksFn }) => {
     // );
     if (inputedVal !== "") {
       createCheckLists(id, inputedVal).then((res) =>
-        setChecksFn({ type: "add-checklist", payload: res })
+        // setChecksFn({ type: "add-checklist", payload: res })
+        dispatch(addingChecklist({ cardId: id, checklists: res }))
       );
       setInputedVal("");
     }

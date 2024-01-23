@@ -3,17 +3,23 @@ import { Button } from "@mui/material";
 import { Card, CardActions, CardContent } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { createCard } from "../api";
+import { useDispatch } from "react-redux";
+import { addingCard } from "./features/cardsSlice";
 
-const AddCardBtn = ({ id, setCardsFn }) => {
+const AddCardBtn = ({ id }) => {
   const [inputedVal, setInputedVal] = useState("");
   const [showAddList, setShowAddList] = useState(true);
+  const dispatch = useDispatch();
+
   // const [cardId, setCardId] = useState([]);
 
   const HandleCreate = () => {
     if (inputedVal !== "") {
-      createCard(id, inputedVal).then((res) =>
-        setCardsFn((old) => [...old, res])
-      );
+      createCard(id, inputedVal).then((res) => {
+        // setCardsFn((old) => [...old, res])
+        dispatch(addingCard({ id: id, cards: res }));
+        // console.log(res);
+      });
       // setCardsFn((old) => [...old, newCard]);
       setInputedVal("");
     }

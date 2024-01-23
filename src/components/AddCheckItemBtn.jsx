@@ -3,17 +3,21 @@ import { Button } from "@mui/material";
 import { Card, CardActions, CardContent } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { createCheckItem } from "../api";
+import { useDispatch } from "react-redux";
+import { addingCheckitem } from "./features/checkitemsSlice";
 
-const AddCheckItemBtn = ({ listId, setItemsListFn }) => {
+const AddCheckItemBtn = ({ listId }) => {
   const [inputedVal, setInputedVal] = useState("");
   const [showAddList, setShowAddList] = useState(true);
+  const dispatch = useDispatch();
 
   const HandleCreate = () => {
     // console.log(inputedVal);
     if (inputedVal !== "") {
       createCheckItem(listId, inputedVal).then((res) =>
         // setItemsListFn((old) => [...old, res])
-        setItemsListFn({ type: "add-item", payload: res })
+        // setItemsListFn({ type: "add-item", payload: res })
+        dispatch(addingCheckitem({ checklistId: listId, checkitems: res }))
       );
       setInputedVal("");
     }

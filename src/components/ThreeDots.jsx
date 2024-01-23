@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { IconButton } from "@mui/material";
 import { archiveList } from "../api";
+import { useDispatch } from "react-redux";
+import { deletingList } from "./features/listSlice";
 
-const ThreeDots = ({ id, lists, setLists }) => {
+const ThreeDots = ({ id }) => {
   const [showDelete, setShowDelete] = useState(false);
+  const dispatch = useDispatch();
 
   const deleteHandler = (e) => {
     e.stopPropagation();
@@ -17,8 +19,9 @@ const ThreeDots = ({ id, lists, setLists }) => {
     const targetId = e.target.id;
     // console.log(targetId);
     archiveList(targetId).then((res) => {
-      var tempList = lists.filter((list) => list.id !== res.id);
-      setLists(tempList);
+      // var tempList = lists.filter((list) => list.id !== res.id);
+      // setLists(tempList);
+      dispatch(deletingList(res));
     });
     // setShowDelete(false);
     // console.log("inside list");

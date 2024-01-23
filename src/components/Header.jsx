@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "@mui/material";
 import { createBoard } from "../api";
+import { createNewBoard } from "./features/boardsSlice";
+import { useDispatch } from "react-redux";
 
-const Header = ({ getBoardName, boardName, setBoards }) => {
+const Header = ({ getBoardName, boardName }) => {
   const [displayCreate, setDisplayCreate] = useState(false);
+  const dispatch = useDispatch();
 
   const createCard = () => {
     setDisplayCreate((old) => !old);
@@ -12,7 +15,9 @@ const Header = ({ getBoardName, boardName, setBoards }) => {
   const textHandler = () => {
     if (boardName !== "") {
       createBoard(boardName).then((res) => {
-        setBoards((old) => [...old, res]);
+        dispatch(createNewBoard(res));
+        // dispatch(fetching());
+        // console.log(fetching(createNewBoard(res)));
       });
       getBoardName("");
     }

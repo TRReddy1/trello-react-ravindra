@@ -19,7 +19,7 @@ const Boards = ({ data }) => {
           width: "70%",
         }}
       >
-        {data.length === 0 ? (
+        {!data ? (
           <div style={{ display: "flex" }}>
             <div style={{ marginRight: "2rem" }}>
               <Skeleton variant="rectangular" width={210} height={118} />

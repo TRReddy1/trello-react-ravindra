@@ -3,22 +3,26 @@ import { useParams } from "react-router-dom";
 import { boardLists } from "../api";
 import { Card, CardActions, CardContent } from "@mui/material";
 import ThreeDots from "./ThreeDots";
-
 import AdderBtn from "./AdderBtn";
 import ListCards from "./ListCards";
 import Skeleton from "@mui/material/Skeleton";
+import { useSelector, useDispatch } from "react-redux";
+import { fetching } from "./features/listSlice";
 
 const Lists = () => {
   const { id } = useParams();
 
-  const [lists, setLists] = useState([]);
+  // const [lists, setLists] = useState([]);
+  const lists = useSelector((state) => state.lists);
+  const dispatch = useDispatch();
+  // console.log(lists);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     boardLists(id)
       .then((res) => {
-        setLists(res);
+        dispatch(fetching(res));
         setLoading(false);
       })
       .catch((err) => setError(err.message));
@@ -83,11 +87,7 @@ const Lists = () => {
                       }}
                     >
                       {list.name}
-                      <ThreeDots
-                        id={list.id}
-                        lists={lists}
-                        setLists={setLists}
-                      />
+                      <ThreeDots id={list.id} />
                     </div>
                   </CardContent>
                   <CardActions>
@@ -97,7 +97,7 @@ const Lists = () => {
               );
             })
           )}
-          <AdderBtn boardId={id} setListsFn={setLists} />
+          <AdderBtn boardId={id} />
         </div>
       )}{" "}
     </>

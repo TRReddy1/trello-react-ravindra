@@ -2,15 +2,20 @@ import React from "react";
 import { Button } from "@mui/material";
 import { deleteCheckList } from "../api";
 import ListCheckItems from "./ListCheckItems";
+import { useDispatch } from "react-redux";
+import { deletingChecklist } from "./features/checklistsSlice";
 
-const CheckItems = ({ checked, cardId, setChecksFn }) => {
+const CheckItems = ({ checked, cardId }) => {
+  const dispatch = useDispatch();
+
   const deleteHandler = (e) => {
     var targetId = e.target.id;
     deleteCheckList(cardId, targetId).then((res) =>
-      setChecksFn({ type: "del-checklist", payload: res })
+      // setChecksFn({ type: "del-checklist", payload: res })
+      dispatch(deletingChecklist({ cardId: cardId, checklists: res }))
     );
   };
-
+  // console.log(check);
   return (
     <div style={{ margin: "1rem" }}>
       <div
